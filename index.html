@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>英語科 学習ページ</title>
+    <style>
+        :root {
+            /* ゆるふわパステルカラーパレット */
+            --primary-color: #ffb3c6; /* メイン：パステルピンク */
+            --primary-dark: #ff8eaa;  /* ホバー時など少し濃いピンク */
+            --bg-color: #fffaf0;      /* 背景：薄いクリーム色 */
+            --text-color: #5a4b4b;    /* テキスト：柔らかいブラウン */
+            --card-bg: #ffffff;       /* カード背景：白 */
+            --notice-bg: #fff0f5;     /* お知らせ背景：ラベンダーブラッシュ */
+            --notice-border: #ffb3c6; /* お知らせ枠：ピンク */
+            --link-bg: #e6f2ff;       /* リンク背景：淡いブルー */
+            --link-text: #6b8cce;     /* リンク文字：ブルーグレー */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            /* 少し丸みのあるフォント指定を含む */
+            font-family: "Hiragino Maru Gothic ProN", "Quicksand", "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            font-size: 16px;
+            /* 背景にうっすらドット柄（お好みで） */
+            background-image: radial-gradient(#ffe0e6 15%, transparent 15%), radial-gradient(#ffe0e6 15%, transparent 15%);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 25px 20px;
+            text-align: center;
+            border-radius: 25px; /* 丸みを大きく */
+            margin-bottom: 25px;
+            box-shadow: 0 4px 10px rgba(255, 179, 198, 0.4); /* ふんわりした影 */
+        }
+
+        h1 {
+            font-size: 1.6rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .notice-board {
+            background-color: var(--notice-bg);
+            border: 2px dashed var(--notice-border); /* 点線でかわいく */
+            padding: 18px;
+            margin-bottom: 35px;
+            border-radius: 20px;
+            position: relative;
+        }
+
+        .notice-board h2 {
+            font-size: 1.2rem;
+            color: #d1758c;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .notice-board h2::before {
+            content: "📢";
+            margin-right: 8px;
+            font-size: 1.4rem;
+        }
+
+        section {
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03); /* 優しい影 */
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* セクションの上部にアクセントライン */
+        section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background-color: #bae1ff; /* パステルブルーのライン */
+        }
+        
+        section:nth-child(even)::before {
+            background-color: #baffc9; /* 偶数番目はパステルグリーンのライン */
+        }
+
+        section h2 {
+            font-size: 1.4rem;
+            color: var(--text-color);
+            margin-bottom: 15px;
+            background: linear-gradient(transparent 70%, #ffe0e6 70%); /* マーカー風の下線 */
+            display: inline-block;
+            padding: 0 5px;
+        }
+
+        h3 {
+            font-size: 1.1rem;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            color: #8c7a7a;
+            display: flex;
+            align-items: center;
+        }
+        
+        h3::before {
+            content: "📝"; /* 要点のアイコン */
+            margin-right: 5px;
+            font-size: 1.2rem;
+        }
+
+        /* 学習リンクの見出しアイコン変更 */
+        .links-title::before {
+            content: "✨";
+        }
+
+        ul.point-list {
+            list-style-type: none;
+            margin-left: 5px;
+            margin-bottom: 20px;
+        }
+
+        ul.point-list li {
+            margin-bottom: 10px;
+            padding-left: 1.5em;
+            position: relative;
+        }
+
+        ul.point-list li::before {
+            content: "🌸"; /* リストマーカーをお花に */
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 0.9em;
+        }
+
+        .link-list {
+            list-style-type: none;
+            margin-left: 0;
+            padding-left: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px; /* ボタン間の隙間 */
+        }
+
+        .link-list a {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: var(--link-bg);
+            color: var(--link-text);
+            text-decoration: none;
+            border-radius: 15px; /* 丸いボタン */
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 0 #cce0ff; /* 立体感を出す影 */
+        }
+
+        .link-list a:hover {
+            transform: translateY(-3px); /* 浮き上がるアニメーション */
+            box-shadow: 0 6px 0 #cce0ff;
+            background-color: #d6eaff;
+        }
+        
+        .link-list a:active {
+            transform: translateY(0);
+            box-shadow: 0 0 0 #cce0ff; /* 押したときのへこみ */
+        }
+
+        .link-list a::before {
+            content: "▶︎";
+            margin-right: 10px;
+            color: #92b0e8;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+            font-size: 0.9rem;
+            color: #b0a0a0;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+            header {
+                padding: 20px 15px;
+                border-radius: 20px;
+            }
+            section {
+                padding: 20px 15px;
+                border-radius: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧸 英語科 学習ルーム 🧸</h1>
+        </header>
+
+        <!-- お知らせ欄 -->
+        <div class="notice-board">
+            <h2>おしらせ</h2>
+            <p>ここにお知らせを書きます。（次回の小テスト範囲や課題の提出期限などを記載します）</p>
+        </div>
+
+        <main>
+            <!-- 単元1：関係代名詞 -->
+            <section>
+                <h2>単元：関係代名詞</h2>
+                <h3>要点</h3>
+                <ul class="point-list">
+                    <li>関係代名詞は「接続詞＋代名詞」の働きをします。</li>
+                    <li>先行詞（人・モノ）と、関係詞節内での働き（主語・目的語など）によって、who, which, thatなどを使い分けます。</li>
+                    <li>目的格の関係代名詞は省略されることが多いです。</li>
+                </ul>
+                <h3 class="links-title">学習リンク</h3>
+                <ul class="link-list">
+                    <li><a href="#" target="_blank" rel="noopener noreferrer">関係代名詞の基本解説動画</a></li>
+                    <li><a href="#" target="_blank" rel="noopener noreferrer">確認問題プリント（PDF）</a></li>
+                </ul>
+            </section>
+
+            <!-- 単元2：関係副詞 -->
+            <section>
+                <h2>単元：関係副詞</h2>
+                <h3>要点</h3>
+                <ul class="point-list">
+                    <li>関係副詞は「接続詞＋副詞」の働きをし、完全な文を導きます。</li>
+                    <li>先行詞が「時」ならwhen、「場所」ならwhere、「理由」ならwhy、「方法」ならhowを用います。</li>
+                    <li>関係副詞は「前置詞＋関係代名詞（which）」で書き換えることができます。</li>
+                </ul>
+                <h3 class="links-title">学習リンク</h3>
+                <ul class="link-list">
+                    <li><a href="#" target="_blank" rel="noopener noreferrer">関係副詞の使い分け演習</a></li>
+                    <li><a href="#" target="_blank" rel="noopener noreferrer">関係代名詞と関係副詞の違い解説</a></li>
+                </ul>
+            </section>
+
+            <!-- 単元3：文型 -->
+            <section>
+                <h2>単元：文型</h2>
+                <h3>要点</h3>
+                <ul class="point-list">
+                    <li>英語の基本文型は5つ（SV, SVC, SVO, SVOO, SVOC）に分類されます。</li>
+                    <li>動詞の性質（自動詞か他動詞かなど）が文型を決定する重要な要素です。</li>
+                    <li>文の要素（S, V, O, C）と修飾語（M）を見分けることが読解の基礎となります。</li>
+                </ul>
+                <h3 class="links-title">学習リンク</h3>
+                <ul class="link-list">
+                    <li><a href="#" target="_blank" rel="noopener noreferrer">5文型を見分けるコツ（スライド）</a></li>
+                    <li><a href="#" target="_blank" rel="noopener noreferrer">基礎文法チェックテスト</a></li>
+                </ul>
+            </section>
+        </main>
+
+        <footer>
+            <p>🍀 このページは授業用です 🍀</p>
+        </footer>
+    </div>
+</body>
+</html>
